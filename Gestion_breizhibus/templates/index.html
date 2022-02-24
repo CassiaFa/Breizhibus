@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire_exercice</title>
+    <link rel="stylesheet" href="./ressources/style.css">
+</head>
+<body>
+    <a href="{{ url_for('index') }}">Accueil</a>
+    <a href="{{ url_for('log') }}">Gestion administrateur</a>
+  <form method="get" action="{{ url_for('affiche_bus')}}">
+    <fieldset>
+      <form action="#"></form>
+      <label for="lign">Choix de la ligne :</label>
+      <select>
+        <option>Ligne Rouge</option>
+        <option>Ligne Verte</option>
+        <option>Ligne Bleu</option>
+      </select>
+      <br><br>
+      <button type="submit">
+        <strong>Valider</strong>
+    </button>
+    </fieldset>
+  </form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'admission</title>
+    <link rel="stylesheet" href="../static/style_f.css">
+</head>
+<body>
+  <div class="m">
+    <a href="{{ url_for('index') }}">Accueil</a>
+    <a href="{{ url_for('connexion_admin') }}">Gestion administrateur</a>
+    <h2>Formulaire de don</h2>
+    <form method="get" action="{{ url_for('add')}}">
+  <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+  <fieldset>
+      <label for="nom">Nom <em>*</em></label>
+      <input id="nom" type="text" name="nom" placeholder="Nom" autofocus="" required=""><br>
+      <label for="prenom" type="text">Prénom <em>*</em></label>
+      <input id="prenom" type="text" name="prenom" placeholder="Prénom" autofocus="" required=""><br>
+      <label for="telephone">Portable</label>
+      <input id="telephone" type="tel" name="telephone" placeholder="06xxxxxxxx" pattern="06[0-9]{8}"><br>
+      <label for="email">Email <em>*</em></label>
+      <input id="email" type="mail" name="email" placeholder="prenom.nom@isen-brest.yncrea.fr" required=""><br>
+  </fieldset>
+  <fieldset>
+    <legend>Information personnelles</legend>
+      <label for="age">Age<em>*</em></label>
+      <input id="age" type="int" name="age" placeholder="xx" pattern="[0-9]{2}" required=""><br>
+      <label for="sexe">Sexe</label>
+      <select id="sexe" name="sexe" type="text">
+        <option value="F" name="sexe">Femme</option>
+        <option value="H" name="sexe">Homme</option>
+      </select><br>
+      <label for="pourquoi">Pourquoi voulez-vous vous impliquer pour ma personne ?</label>
+      <textarea id="pourquoi" name="pourquoi"></textarea>
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Choisissez un montant d'engagement</legend>
+    <select id="montant" name="montant" type="float">
+      <option value=2.99 name="montant">2€99</option>
+      <option value=5.99 name="montant">5€99</option>
+      <option value=15.99 name="montant">15€99</option>
+      <option value=29.99 name="montant">29€99</option>
+      <option value=59.99 name="montant">59€99</option>
+      <option value=99.99 name="montant">99€99</option>
+    </select><br>
+    <!-- <input id="montant" type="range" min=10 max=500 step=10/> -->
+  </fieldset>
+  <button type="submit">Valider</button>
+</form>
+</body>
+</html>

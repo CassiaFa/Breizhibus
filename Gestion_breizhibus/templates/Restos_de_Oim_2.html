@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>{% block title %}Soutenez-moi{% endblock %}</title>
+</head>
+<body>{% block contenu %} 
+  <div id="mapage">
+    <a href="{{ url_for('don') }}">Page de dons</a>
+    <a href="{{ url_for('bilan') }}">Bilan des dons</a>
+  <div class="d">
+  <h1>
+      Les Restos de Moi
+  </h1> 
+  <img class="gif" style="justify-content: end;" alt="dance" width="10%" src="../static/dance.gif" />
+ </div>
+  <h2>Infos clés :</h2>
+  <fieldset>
+  <p>J'existe depuis 1993.</p>
+  <p> Je suis un organisme vivant appartenant à l'espèce Homo Sapiens.</p>
+   <p>Mammifère, je suis vivipare et omnivore.<br> Je mesure 1m74 pour 75kg.</p>
+</fieldset>
+<div class='b'>
+  <table style="text-align: center;">
+    <tr>
+      <td>Qui suis-je ?</td>
+      <td>Pourquoi faire des dons ?</td>
+      <td>Quel intérêt pour vous ? :</td>
+    </tr>
+    <tr>
+      <td>Individu non notoire, métaphysicien et oracle. 
+        Je vous accompagne dans votre épanouissement personnel et vous épaule au quotidien.</td>
+      <td>Le financement participatif permettra à ma personne de m'acheter moultes objets et
+          de subvenir à mes besoins vitaux.</td>
+        <td>Vous contribuez à l'équilibre planétaire et cosmique en rééquilibrant les flux énergétiques.
+          Vous participez au développement d'un organisme unitaire, unique et investi d'une réelle mission.</td>
+    </tr>
+  </table>
+</div>
+<a class="don" href="{{ url_for('don') }}">Donner</a>
+<audio src="../static/music.mp3" type=audio/mpeg controls autoplay loop>
+  </audio>
+
+  <img alt="Me" width="50%" height="50%" src="../static/Cosmo.jpg"></img>
+</div>
+{% endblock %}
+</body>
+</html>

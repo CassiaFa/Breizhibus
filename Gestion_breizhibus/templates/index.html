@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block connexion %}
+  <div id="connexion">
+    <a href="{{ url_for('connexion')}}" id="a_connexion"> Connexion </a>
+  </div>
+{% endblock %}
+
+{% block content %}             
+    <div id="reseau">
+        
+    </div>
+
+    <div id="info">
+        
+    </div>
+
+    <div id="affichage_info">
+        
+    </div>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,4 +50,4 @@
     </fieldset>
   </form>
 </body>
-</html>
+</html> -->

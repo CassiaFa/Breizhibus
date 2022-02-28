@@ -10,11 +10,11 @@
     <div id="form-wrap">     
         <form action="{{ url_for('gestion') }}" method="post" id="connexion">
             <div class="inputbox">
-                <input type="text" required="required">
+                <input type="text" required="required" name="user">
                 <span>Utilisateur :</span>
             </div>
             <div class="inputbox">
-                <input type="text" required="required">
+                <input type="password" required="required" name="mdp">
                 <span>Mot de passe :</span>
             </div>
             <div class="inputbox">

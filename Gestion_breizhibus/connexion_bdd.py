@@ -7,7 +7,7 @@ class Connexion :
     __PWD = 'root'
     __HOST = 'localhost'
     __PORT = '8081'
-    __DB = 'breizhibus_test'
+    __DB = 'breizhibus'
     __cursor = None
 
     @classmethod
@@ -54,6 +54,19 @@ class Connexion :
         for user in cls.__cursor:
             list_users.append(Users(user[0], user[1], user[2]))
         return list_users
+
+    @classmethod
+    def check_user(cls,login, mdp):
+        query = f"SELECT identifiant FROM users WHERE identifiant='{login}' AND mdp='{mdp}';"
+        cls.__cursor.execute(query)
+        
+        droits = cls.__cursor.fetchone()
+        
+        if droits != None:
+            droits = droits[0]
+
+
+        return droits
 
     @classmethod
     def Maj_bus(cls, bus, ligne):

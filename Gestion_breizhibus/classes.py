@@ -10,7 +10,7 @@ class Bus :
         self.id = id_bus
         self.numero = numero
         self.immatriculation = immatriculation
-        self.nombre_place = immatriculation
+        self.nombre_place = nombre_place
         self.id_ligne = id_ligne
 
 

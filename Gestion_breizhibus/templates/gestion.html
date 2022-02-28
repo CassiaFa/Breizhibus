@@ -8,7 +8,7 @@
 
 
 {% block content %}
-    {% if droits == 'Administrateur' %}
+    {% if droits %}
         <div class="contenu">
             <table >
                 <tr>
@@ -17,18 +17,43 @@
                     <th>Nombre de place</th>
                     <th>Ligne</th>
                 </tr>
-                {% for don in dons %}
+                {% for b in bus %}
                     <tr>
-                        <td><a href="#">{{ don['date'] }}</a></td>
-                        <td><a href="#">{{ don['genre'] + " " + don['nom'] + " " + don['prenom'] }}</a></td>
-                        <td class="ctr">{{ don['valeur'] }}</td>
-                        <td class="ctr">{{ don['reglement'] }}</td>
+                        <td>{{ b.numero }}</td>
+                        <td class="ctr">{{ b.immatriculation }}</td>
+                        <td class="ctr">{{ b.nombre_place }}</td>
+                        {% for i in lignes %} 
+                            {% if b.id_ligne == i.id %}
+                                <td class="ctr">{{ i.nom }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td class="ctr modifier">Modifier</td>
                     </tr>
                 {% endfor %}
             </table>
 
+            <div class="ajout_bus">
+                <form action="{{ url_for('gestion') }}">
+                    <label for="n_bus">Numéro de bus :</label>
+                    <input type="text" required name="n_bus">
+
+                    <label for="immat">Immatriculation :</label>
+                    <input type="text" required name="immat">
+
+                    <label for="nb_place">Nombre de place :</label>
+                    <input type="text" required name="nb_place">
+
+                    <select name="ligne" id="ligne">
+                        {% for i in lignes %}
+                            <option value="{{ i.id }}">{{ i.nom }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
         </div>
-    {% elif droits == None%}
+    {% elif droits == None %}
         <div class="contenu">
             <p id="acces_refuse">Le nom d'utilisateur ou le mot de passe est erroné !</p>
         </div>

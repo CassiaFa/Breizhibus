@@ -1,21 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merci, vraiment</title>
-    <link rel="stylesheet" href="../static/style_f.css">
-</head>
-<body>
-    <div class="m">
-        <a href="{{ url_for('index') }}">Accueil</a>
-        <a href="{{ url_for('log') }}">Gestion administrateur</a>
-    </div>
-    <h1>Gestionnaire.</h1>
-        <h2>Système de gestion des bus</h2>
-    <fieldset>
-        <h3>blablablablabla...interface</h3>
-    </fieldset>
-</body>
-</html> 
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_tb.css') }}"> 
+{% endblock %}
+
+
+{% block content %}
+    {% if droits == 'Administrateur' %}
+        <div class="contenu">
+            <table >
+                <tr>
+                    <th>Ligne</th>
+                    <th>Bus</th>
+                    <th>Arrêt</th>
+                </tr>
+                {% for don in dons %}
+                    <tr>
+                        <td><a href="#">{{ don['date'] }}</a></td>
+                        <td><a href="#">{{ don['genre'] + " " + don['nom'] + " " + don['prenom'] }}</a></td>
+                        <td class="ctr">{{ don['valeur'] }}</td>
+                        <td class="ctr">{{ don['reglement'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    {% elif droits == None%}
+        <div class="contenu">
+            <p id="acces_refuse">Le nom d'utilisateur ou le mot de passe est erroné !</p>
+        </div>
+    {% else %}
+        <div class="contenu">
+            <p id="acces_refuse">Vous n'êtes pas autorisé à accéder au tableau de bord !</p>
+        </div>
+    {% endif %}
+{% endblock %}

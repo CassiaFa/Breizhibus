@@ -12,19 +12,20 @@
     <body>
         <!-- Entête de la page web -->
         <header class="page-header">
-            {% block connexion %}{% endblock %}
-
-            <h1><a href="{{ url_for('index') }}" id="titre">Breizhibus</a></h1>
-            <!-- Bloc de navigation -->
             <nav>
-                <div>
+                <div id="menu_bar">
                     <ul id="menu">
-                        <li class="menu_item"><a href="#association" class="bouton_menu">Accueil</a></li>
-                        <li class="menu_item"><a href="#missions" class="bouton_menu">Le réseau Breizhibus</a></li>
-                        <li class="menu_item"><a href="{{ url_for('contact') }}" class="bouton_menu">Nous Contacter</a></li>
+                        <li class="menu_item"><a href="{{url_for('index')}}" class="bouton_menu">Accueil</a></li>
+                        <li class="menu_item"><a href="#reseau" class="bouton_menu">Le réseau Breizhibus</a></li>
+                        <li class="menu_item"><a href="" class="bouton_menu">Nous Contacter</a></li>
                     </ul>
+                    {% block connexion %}{% endblock %}
                 </div>
             </nav>
+
+            
+            <h1><a href="{{ url_for('index') }}" id="titre">Breizhibus</a></h1>
+            <!-- Bloc de navigation -->
 
             {% block boutondon %}{% endblock %}
 

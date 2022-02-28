@@ -131,3 +131,4 @@ dmypy.json
 # Fichier exclue
 exemple_cdc.pdf
 *.svg
+requirements.txt

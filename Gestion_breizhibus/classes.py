@@ -1,15 +1,16 @@
 class Ligne :
-    def __init__(self, id_ligne, numero_ligne, list_bus, list_arret):
+    def __init__(self, id_ligne, nom):
         self.id = id_ligne
-        self.numero_ligne = numero_ligne
-        self.list_bus = list_bus
-        self.list_arret = list_arret
+        self.nom = nom
+        # self.list_bus = list_bus
+        # self.list_arret = list_arret
 
 class Bus : 
-    def __init__(self, id_bus, numero, immatriculation, id_ligne):
+    def __init__(self, id_bus, numero, immatriculation, nombre_place, id_ligne):
         self.id = id_bus
         self.numero = numero
         self.immatriculation = immatriculation
+        self.nombre_place = immatriculation
         self.id_ligne = id_ligne
 
 

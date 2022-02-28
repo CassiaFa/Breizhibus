@@ -2,11 +2,8 @@ from classes import Users
 from connexion_bdd import Connexion
 
 def login() :
-    Connexion.ouvrir_connexion()
-
+    
     users = Connexion.lister_utilisateurs()
-
-    Connexion.fermer_connexion()
 
     for user in users :
             print(user.identifiant)

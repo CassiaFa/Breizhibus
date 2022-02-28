@@ -2,8 +2,16 @@
 
 {% block title %}Tableau de bord{% endblock %}
 
+{% block connexion %}
+  <div id="connexion_button">
+    <a href="{{ url_for('index')}}" id="a_connexion"> Deconnexion </a>
+  </div>
+{% endblock %}
+
 {% block links %}
     <link rel="stylesheet" href="{{ url_for('static', filename='style_tb.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='pop_up.css') }}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock %}
 
 
@@ -16,6 +24,7 @@
                     <th>Immatriculation bus</th>
                     <th>Nombre de place</th>
                     <th>Ligne</th>
+                    <th></th>
                 </tr>
                 {% for b in bus %}
                     <tr>
@@ -27,13 +36,13 @@
                                 <td class="ctr">{{ i.nom }}</td>
                             {% endif %}
                         {% endfor %}
-                        <td class="ctr modifier">Modifier</td>
+                        <td class="ctr"><span class="material-icons">edit_note</span></td>
                     </tr>
                 {% endfor %}
             </table>
 
             <div class="ajout_bus">
-                <form action="{{ url_for('gestion') }}">
+                <form action="{{ url_for('gestion') }}" method="post">
                     <label for="n_bus">Numéro de bus :</label>
                     <input type="text" required name="n_bus">
 
@@ -50,9 +59,13 @@
                     </select>
 
                     <button type="submit">Ajouter</button>
+
+                    <input name="droits" type="hidden" value="{{ droits }}">
+
                 </form>
             </div>
         </div>
+
     {% elif droits == None %}
         <div class="contenu">
             <p id="acces_refuse">Le nom d'utilisateur ou le mot de passe est erroné !</p>

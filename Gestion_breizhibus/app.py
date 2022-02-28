@@ -13,13 +13,24 @@ def connexion():
     return render_template('connexion.html')
 
 @app.route('/gestion', methods=['POST'])
-def gestion():
-    # dons, cagnote = data.lire_dons()
+def gestion():    
     login = request.values.get('user')
     mdp = request.values.get('mdp')
 
     Connexion.ouvrir_connexion()
-    droits = Connexion.check_user(login, mdp)
+
+    if login == None:
+        droits = request.values.get('droits')
+        num = request.values.get('n_bus')
+        immat = request.values.get('immat')
+        nb_place = request.values.get('nb_place')
+        id_ligne = request.values.get('ligne')
+        Connexion.Add_bus(num, immat, nb_place, id_ligne)
+    else:
+        droits = Connexion.check_user(login, mdp)
+    
+    
+
     bus = Connexion.lister_bus()
     arrets = Connexion.lister_arret()
     lignes = Connexion.lister_ligne()

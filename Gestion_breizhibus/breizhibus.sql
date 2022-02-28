@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8081
--- Generation Time: Jan 05, 2022 at 05:33 PM
+-- Generation Time: Feb 28, 2022 at 01:23 PM
 -- Server version: 5.7.24
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `breizhibus`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selection_ligne` (IN `input` VARCHAR(50))  NO SQL
+SELECT arrets.nom, arrets.adresse
+FROM arrets 
+INNER JOIN arrets_lignes ON arrets.id_arret = arrets_lignes.id_arret
+INNER JOIN lignes ON arrets_lignes.id_ligne = lignes.id_ligne
+WHERE lignes.nom = input$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -92,10 +104,11 @@ CREATE TABLE `bus` (
 --
 
 INSERT INTO `bus` (`id_bus`, `numero`, `immatriculation`, `nombre_place`, `id_ligne`) VALUES
-(1, 'BB01', 'UM 642 RH', 20, 1),
+(1, 'BB01', 'UM 642 RH', 20, 3),
 (2, 'BB02', 'SK 369 WY', 30, 2),
 (3, 'BB03', 'ER 916 BI', 20, 3),
-(4, 'BB04', 'CA 852 RI', 30, 1);
+(4, 'BB04', 'CA 852 RI', 30, 1),
+(5, 'BB05', 'FRR 45 YT', 30, 3);
 
 -- --------------------------------------------------------
 
@@ -116,6 +129,18 @@ INSERT INTO `lignes` (`id_ligne`, `nom`) VALUES
 (1, 'Rouge'),
 (2, 'Vert'),
 (3, 'Bleu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `identifiant` varchar(50) NOT NULL,
+  `mdp` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -148,6 +173,12 @@ ALTER TABLE `lignes`
   ADD PRIMARY KEY (`id_ligne`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -161,13 +192,19 @@ ALTER TABLE `arrets`
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `lignes`
 --
 ALTER TABLE `lignes`
-  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_ligne` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

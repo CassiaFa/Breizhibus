@@ -37,9 +37,9 @@ class Connexion :
         return list_ligne
 
     @classmethod
-    def lister_arret(cls):
-        
-        query = "SELECT id_arret, nom, adresse FROM arrets;"        
+    def lister_arret(cls,):
+        query = "SELECT id_arret, nom, adresse FROM arrets;"
+        #avec une condition, concatener le WHERE id_ligne =???    
         cls.__cursor.execute(query)
         list_arret = []
         for arret in cls.__cursor:

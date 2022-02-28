@@ -14,11 +14,24 @@
     </div>
 
     <div id="info">
-        
+      <form method="post" action="{{ url_for('rouge')}}">
+      <fieldset>
+        <label for="lign">Choix de la ligne :</label>
+        <select name = "Ligne">
+          {% for i in lin %}
+          <option value={{i.id}} >Ligne {{i.nom}}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">
+          <strong>Valider</strong>
+      </button>
+      </fieldset>
+      </form>
     </div>
 
     <div id="affichage_info">
-        
+
     </div>
 {% endblock %}
 
@@ -34,7 +47,7 @@
 <body>
     <a href="{{ url_for('index') }}">Accueil</a>
     <a href="{{ url_for('log') }}">Gestion administrateur</a>
-  <form method="get" action="{{ url_for('affiche_bus')}}">
+  <form method="post" action="{{ url_for('affiche_bus')}}">
     <fieldset>
       <form action="#"></form>
       <label for="lign">Choix de la ligne :</label>

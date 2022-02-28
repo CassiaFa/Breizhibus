@@ -1,5 +1,5 @@
 import mysql.connector as mysqlpyth
-import classes
+from classes import Users, Bus
 
 class Connexion :
     # Comme on créé une classmethod, on instantie pas la classe avec __init__
@@ -7,7 +7,7 @@ class Connexion :
     __PWD = 'root'
     __HOST = 'localhost'
     __PORT = '8081'
-    __DB = 'breizhibus'
+    __DB = 'breizhibus_test'
     __cursor = None
 
     # cls = classmethod
@@ -20,20 +20,34 @@ class Connexion :
     @classmethod
     def lister_bus(cls):
         
-        query = "SELECT id_bus, numero, immatriculation, id_ligne FROM bus ORDER BY bus.numero;"
+        query = "SELECT id_bus, numero, immatriculation, nombre_place, id_ligne FROM bus ORDER BY bus.numero;"
         
         cls.__cursor.execute(query)
         list_bus = []
 
         for bus in cls.__cursor:
-            list_bus.append(classes.Bus(bus[0], bus[1], bus[2], bus[3]))
+            list_bus.append(Bus(bus[0], bus[1], bus[2], bus[3], bus[4]))
         return list_bus
 
 
     @classmethod
-    def Maj_bus(cls, id, ligne):
-        requete = "Update bus SET id_ligne = %s WHERE id_bus = %s;"
-        param = (ligne, id, )
+    def Maj_bus(cls, bus, ligne):
+        requete = "UPDATE bus SET id_ligne = %s WHERE id_bus = %s;"
+        param = (ligne, bus )
+        cls.__cursor.execute(requete, param)
+        cls.__bdd.commit()
+    
+    @classmethod
+    def Add_bus(cls, numero, immatriculation, nombre_place, id_ligne):
+        requete = "INSERT INTO bus (numero, immatriculation, nombre_place, id_ligne) VALUES (%s,%s, %s, %s);"
+        param = (numero, immatriculation, nombre_place, id_ligne )
+        cls.__cursor.execute(requete, param)
+        cls.__bdd.commit()
+
+    @classmethod
+    def Sup_bus(cls, numero, immatriculation, nombre_place, id_ligne):
+        requete = "INSERT INTO bus (numero, immatriculation, nombre_place, id_ligne) VALUES (%s,%s, %s, %s);"
+        param = (numero, immatriculation, nombre_place, id_ligne )
         cls.__cursor.execute(requete, param)
         cls.__bdd.commit()
 
@@ -42,3 +56,15 @@ class Connexion :
         cls.__cursor.close()
         cls.__bdd.close()
         cls.__cursor = None
+
+    @classmethod
+    def lister_utilisateurs(cls):
+        
+        query = "SELECT id_user, identifiant, mdp FROM users;"
+        
+        cls.__cursor.execute(query)
+        list_users = []
+
+        for user in cls.__cursor:
+            list_users.append(Users(user[0], user[1], user[2]))
+        return list_users

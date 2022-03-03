@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8081
--- Generation Time: Feb 28, 2022 at 01:23 PM
+-- Generation Time: Mar 03, 2022 at 10:41 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.16
 
@@ -108,7 +108,11 @@ INSERT INTO `bus` (`id_bus`, `numero`, `immatriculation`, `nombre_place`, `id_li
 (2, 'BB02', 'SK 369 WY', 30, 2),
 (3, 'BB03', 'ER 916 BI', 20, 3),
 (4, 'BB04', 'CA 852 RI', 30, 1),
-(5, 'BB05', 'FRR 45 YT', 30, 3);
+(5, 'BB05', 'FRR 45 YT', 30, 3),
+(6, 'BB06', 'FE 857 TO', 50, 1),
+(7, 'BB07', 'DE 456 TE', 70, 2),
+(11, 'BB08', 'GT 609 LT', 69, 1),
+(12, 'BB09', 'KH 938 SK', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -141,6 +145,15 @@ CREATE TABLE `users` (
   `identifiant` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `identifiant`, `mdp`) VALUES
+(1, 'franky_tanguy', 'franky'),
+(2, 'herve_poirier', 'herve'),
+(3, 'fabio_cassiano', 'fabio');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +205,7 @@ ALTER TABLE `arrets`
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `lignes`
@@ -204,7 +217,7 @@ ALTER TABLE `lignes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

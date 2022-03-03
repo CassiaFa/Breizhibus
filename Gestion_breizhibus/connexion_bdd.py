@@ -47,6 +47,26 @@ class Connexion :
         return list_arret
 
     @classmethod
+    def lister_arret_tri(cls, Ligne):
+        list_arret = []
+        if Ligne == "Rouge":
+            sub_query = " WHERE lignes.id_ligne = 1"
+        elif Ligne == "Vert":
+            sub_query = " WHERE lignes.id_ligne = 2"
+        elif Ligne == "Bleu":
+            sub_query = " WHERE lignes.id_ligne = 3"
+        else :
+            sub_query =""
+        query = "SELECT arrets.id_arret, arrets.nom, arrets.adresse FROM arrets INNER JOIN arrets_lignes ON arrets.id_arret = arrets_lignes.id_arret INNER JOIN lignes ON arrets_lignes.id_ligne = lignes.id_ligne" + str(sub_query) +";"
+        print(query)
+
+        cls.__cursor.execute(query)
+        for arret in cls.__cursor:
+            list_arret.append(Arret(arret[0], arret[1], arret[2]))
+
+        return list_arret
+
+    @classmethod
     def lister_utilisateurs(cls):
         query = "SELECT id_user, identifiant, mdp FROM users;"          
         cls.__cursor.execute(query)

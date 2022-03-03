@@ -83,3 +83,8 @@ header.page-header > h1 {
 #titre:visited {
     color: white;
 }
+
+#reseau {
+    width: 30%;
+    height: 30%;
+}

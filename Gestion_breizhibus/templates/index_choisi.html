@@ -2,6 +2,10 @@
 
 {% block title %}Acceuil{% endblock %}
 
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_tb.css') }}">
+{% endblock %}
+
 {% block connexion %}
   <div id="connexion_button">
     <a href="{{ url_for('connexion')}}" id="a_connexion"> Connexion </a>
